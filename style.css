@@ -1,0 +1,302 @@
+/* ================= GLOBAL & THEMES ================= */
+:root {
+  --neon-purple: #9d4edd;
+  --neon-blue: #00d4ff;
+  --flame-orange: #ff4d4d;
+  --flame-yellow: #ff9966;
+  --win: #00ff88;
+  --glass: rgba(15, 23, 42, 0.9);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  transition: background 0.8s ease;
+  padding: 60px 20px;
+}
+
+/* NEON SEARCH THEME */
+body.search-mode {
+  background: radial-gradient(circle at top, #0b1220, #020617);
+  color: #e5e7eb;
+}
+
+body.search-mode h1 {
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5));
+}
+
+/* CINEMATIC BATTLE THEME */
+body.battle-mode {
+  background: #000;
+  color: #fff;
+}
+
+body.battle-mode h1 {
+  background: linear-gradient(90deg, var(--flame-orange), var(--flame-yellow));
+
+  /* standard + webkit */
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 0 15px rgba(255, 77, 77, 0.8));
+  animation: flicker 2s infinite;
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* ================= BACKGROUND EFFECTS ================= */
+.bg-effects { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+body.battle-mode .bg-effects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,50,0,0.2), transparent 70%);
+  animation: pulse 4s infinite alternate;
+}
+
+body.battle-mode .bg-effects::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(2px 2px at 20% 30%, #ff4d4d, transparent),
+                    radial-gradient(1.5px 1.5px at 70% 60%, #ff9966, transparent);
+  animation: sparks 10s linear infinite;
+}
+
+@keyframes sparks { from { transform: translateY(0); } to { transform: translateY(-500px); } }
+@keyframes pulse { from { opacity: 0.4; } to { opacity: 0.8; } }
+
+/* ================= UI ELEMENTS ================= */
+.container { width: 100%; max-width: 900px; text-align: center; }
+
+h1 { font-size: clamp(2.5rem, 8vw, 4rem); letter-spacing: 5px; margin-bottom: 10px; transition: 0.5s; text-transform: uppercase; }
+
+.subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 1px; }
+
+.mode-toggle { display: flex; gap: 15px; justify-content: center; margin: 40px 0; }
+
+.mode-toggle button {
+  padding: 12px 30px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05); color: #aaa; cursor: pointer; transition: 0.3s;
+}
+
+.mode-toggle button:hover { transform: translateY(-3px); color: #fff; }
+
+body.search-mode .mode-toggle button.active {
+  background: var(--neon-purple); color: white; box-shadow: 0 0 20px var(--neon-purple);
+}
+
+body.battle-mode .mode-toggle button.active {
+  background: var(--flame-orange); color: white; box-shadow: 0 0 20px var(--flame-orange);
+}
+
+.input-group { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; }
+
+input {
+  flex: 1; max-width: 400px; padding: 15px 25px; border-radius: 12px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; outline: none;
+}
+
+button#searchBtn, button#battleBtn {
+  padding: 15px 35px; border-radius: 12px; border: none; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+
+button#searchBtn:hover, button#battleBtn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+body.search-mode #searchBtn { background: var(--neon-blue); }
+body.battle-mode #battleBtn { background: var(--flame-orange); }
+
+/* ================= CARDS (THE FIX) ================= */
+.display-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 25px; 
+  margin-top: 30px;
+}
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 24px;
+  text-align: left;
+  position: relative;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Background lines */
+  overflow: hidden;
+}
+
+.card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); }
+
+.card.winner { border: 2px solid var(--win); box-shadow: 0 0 30px rgba(0, 255, 136, 0.2); }
+/* Red border and glow for the loser */
+.card.loser {
+    border: 2px solid #ff4d4d;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+    opacity: 0.8; /* Optional: makes the loser look slightly 'defeated' */
+}
+
+/* Blue border and glow for a draw */
+.card.draw {
+    border: 2px solid #007bff;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Styling for the Draw Badge (if you want it to match) */
+.badge[style*="background: #007bff;"] {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.card img { 
+  width: 80px; 
+  height: 80px; 
+  border-radius: 20px; 
+  margin-bottom: 15px; 
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.badge {
+  position: absolute; top: 15px; right: 15px;
+  padding: 5px 12px; border-radius: 6px;
+  font-size: 0.7rem; font-weight: 900; color: #000; background: var(--win);
+}
+
+/* The 2x2 Stats Grid */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+
+.stat-tile { 
+  background: rgba(255,255,255,0.03); 
+  padding: 12px; 
+  border-radius: 12px; 
+  text-align: center; 
+  border: 1px solid rgba(255,255,255,0.05); /* Lines for tiles */
+}
+
+.stat-tile small { color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; }
+.stat-tile strong { display: block; font-size: 1.2rem; color: #fff; margin-top: 4px; }
+
+.port-link {
+  display: block; text-align: center; padding: 12px; background: rgba(255,255,255,0.05);
+  border-radius: 12px; color: #fff; text-decoration: none; font-weight: bold; font-size: 0.85rem;
+  transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
+}
+
+.port-link:hover { background: var(--neon-purple); border-color: transparent; }
+
+.hidden { display: none !important; }
+
+
+
+/* ================= REPO LINKS & LISTS ================= */
+h4 {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+ul {
+    list-style: none;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Spaces out the "tags" */
+}
+
+ul li a {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: 0.3s all ease;
+}
+
+/* Neon Glow for Search Mode Links */
+body.search-mode ul li a:hover {
+    background: rgba(157, 78, 221, 0.2);
+    border-color: var(--neon-purple);
+    color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Flame Glow for Battle Mode Links */
+body.battle-mode ul li a:hover {
+    background: rgba(255, 77, 77, 0.2);
+    border-color: var(--flame-orange);
+    color: var(--flame-yellow);
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+    transform: translateY(-2px);
+}
+
+/* View Profile Button Tweak */
+.port-link {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+body.search-mode .port-link:hover { background: var(--neon-purple); box-shadow: 0 0 15px var(--neon-purple); }
+body.battle-mode .port-link:hover { background: var(--flame-orange); box-shadow: 0 0 15px var(--flame-orange); }
+
+
+/* Title Logo Spacing */
+h1 i {
+    margin-right: 15px;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+/* Footer Styling */
+.footer {
+    margin-top: 50px;
+    padding: 20px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer i {
+    color: #ff9966; /* Match the flame/neon vibe */
+    margin-right: 5px;
+}
+
+body.search-mode .footer i {
+    color: var(--neon-blue);
+}
+
+/* ================= MOBILE ADJUSTMENTS ================= */
+@media (max-width: 600px) {
+  body { padding: 20px 10px; }
+  .input-group { flex-direction: column; }
+  input, button#searchBtn, button#battleBtn { width: 100%; max-width: 100%; }
+}

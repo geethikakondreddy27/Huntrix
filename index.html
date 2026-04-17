@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huntrix: Battle Mode</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-effects"></div> <div class="container">
+        <h1 id="mainTitle"><i class="fa-brands fa-github"></i> Huntrix</h1>
+        <p>..Hunt the GitHub profiles u want..</p>
+
+        <div class="mode-toggle">
+            <button id="searchModeBtn" class="active">Search Mode</button>
+            <button id="battleModeBtn">Battle Mode</button>
+        </div>
+
+        <div id="searchSection">
+            <div class="input-group">
+                <input type="text" id="usernameInput" placeholder="Enter GitHub username...">
+                <button id="searchBtn">Hunt</button>
+            </div>
+        </div>
+
+        <div id="battleSection" class="hidden">
+            <div class="input-group">
+                <input type="text" id="user1Input" placeholder="User 1">
+                <input type="text" id="user2Input" placeholder="User 2">
+                <button id="battleBtn">Start Battle</button>
+            </div>
+        </div>
+
+        <div id="statusMessage"></div>
+        <div id="displayArea" class="display-grid"></div>
+
+        <footer class="footer">
+            <p><i class="fa-solid fa-bolt"></i> Powered by Prodesk IT Solutions</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
