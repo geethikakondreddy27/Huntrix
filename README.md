@@ -1,12 +1,12 @@
-# 🔍 Huntrix – GitHub Profile Explorer & Battle App
+#  Huntrix – GitHub Profile Explorer & Battle App
 
 Huntrix is a web-based application that allows users to search GitHub profiles and compare two users in a “Battle Mode” based on their GitHub statistics.
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 🔍 Search Mode
+###  Search Mode
 - Search any GitHub username
 - View:
   - Avatar
@@ -19,17 +19,17 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 - Latest repositories displayed
 - Handles invalid usernames gracefully
 
-### ⚔️ Battle Mode
+###  Battle Mode
 - Compare two GitHub users
 - Displays:
   - Followers count
   - Total no.of repositories to declare the winner
 - Highlights:
-  - 🟢 Winner
-  - 🔴 Loser
-  - 🔵 Draw
+  -  Winner (Green color)
+  -  Loser  (Red color)
+  -  Draw   (Blue color)
 
-### 🎨 UI Features
+###  UI Features
 - Dynamic theme switching:
   - Calm UI for Search Mode
   - Cinematic fire-themed UI for Battle Mode
@@ -39,7 +39,7 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 
 ---
 
-## 🧠 Tech Stack
+##  Tech Stack
 
 - HTML
 - CSS 
@@ -55,7 +55,7 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
 1. User inputs a GitHub username
 2. App fetches data using GitHub API
@@ -67,7 +67,7 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 
 ---
 
-## 🛠️ Key Concepts Used
+##  Key Concepts Used
 
 - Async/Await
 - Fetch API
@@ -79,7 +79,7 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 
 ---
 
-## ❗ Error Handling
+##  Error Handling
 
 - Handles 404 (User Not Found)
 - Displays loading state during API calls
@@ -88,10 +88,11 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 ---
 
 ## Live Demo
-
+ 
+ Vercel : https://huntrix-theta.vercel.app/ 
 ---
 
-## 👩‍💻 Author
+##  Author
 
 Kondreddy Geethika
 Developed as part of an internship project at **Prodesk IT Solutions**
