@@ -90,6 +90,7 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 ## Live Demo
  
  Vercel : https://huntrix-theta.vercel.app/ 
+
 ---
 
 ##  Author
