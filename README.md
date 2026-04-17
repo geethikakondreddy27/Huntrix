@@ -95,8 +95,8 @@ Huntrix is a web-based application that allows users to search GitHub profiles a
 
 ##  Author
 
-Kondreddy Geethika
-Developed as part of an internship project at **Prodesk IT Solutions**
+- Kondreddy Geethika
+- Developed as part of an internship project at **Prodesk IT Solutions**
 
 ---
 
